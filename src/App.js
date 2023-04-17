@@ -1,60 +1,51 @@
 import './App.css';
-import React from 'react'
-import Header from "./components/header"
-import Subscribe from "./components/subscribe"
-import Footer from "./components/footer"
-import NumberGenerator from "./components/numbergenerator"
-import HexadecimalColors from "./components/hexadecimalcolors"
-import ChangeCycles from "./components/changecycles"
-import Events from './components/events';
-import { useState } from "react";
+import React, { useState } from 'react'
+import ChangeSeason from "./components/changeSeason"
+let number = 1;
 
+async function App() {
 
-function App() {
+  const seasons = [
+    {
+      name: "Yaz",
+      backgroundColor: "#F4D03F",
+    },
+    {
+      name: "İlkbahar",
+      backgroundColor: "#1ABC9C",
+    },
+    {
+      name: "Kış",
+      backgroundColor: "#F0F3F4",
 
-  const [theme, setTheme] = useState(false)
-  const [themeText, setThemeText] = useState('Light')
-  const [textColor, setTextColor] = useState('#000')
-  const [backgroundColor, setBackgroundColor] = useState('#fff')
-
-  const changeMode = () => {
-    if (!theme) {
-      setTheme(true);
-      setBackgroundColor('#000')
-      setTextColor('#fff')
-      setThemeText('Dark')
-    } else {
-      setTheme(false);
-      setBackgroundColor('#fff')
-      setTextColor('#000')
-      setThemeText('Light')
+    },
+    {
+      name: "Sonbahar",
+      backgroundColor: "#D98880",
     }
+  ];
 
-    data.backgroundColor = backgroundColor;
-    data.textColor = textColor;
-    data.theme = theme;
-    data.themeText = themeText;
+  const [season, setSeason] = useState(seasons[0])
 
+  function changeSeason(){
+
+      if(number === 5) {
+        number = 1
+      }
+
+      setSeason(seasons[number-1])
+
+      console.log(season)
+
+      number++;
 
   }
 
-  let data = {
-    theme,
-    themeText,
-    textColor,
-    backgroundColor,
-    changeMode
-  }
+  changeSeason();
 
   return (
-    <div className="App">
-      <Header data={data} />
-      <Subscribe />
-      <Footer data={data} />
-      <NumberGenerator />
-      <HexadecimalColors />
-      <ChangeCycles />
-      <Events />
+    <div className="App" style={{backgroundColor:season.backgroundColor}}>
+      <ChangeSeason text={season.name} />
     </div>
   );
 }
