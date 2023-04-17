@@ -1,9 +1,9 @@
 import './App.css';
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import ChangeSeason from "./components/changeSeason"
 let number = 1;
 
-async function App() {
+function App() {
 
   const seasons = [
     {
@@ -25,27 +25,28 @@ async function App() {
     }
   ];
 
-  const [season, setSeason] = useState(seasons[0])
+  const [name, setName] = useState(seasons[0].name)
+  const [backgroundColor, setBackgroundColor] = useState(seasons[0].backgroundColor)
 
-  function changeSeason(){
+  const changeSeason = () => {
 
       if(number === 5) {
         number = 1
       }
 
-      setSeason(seasons[number-1])
-
-      console.log(season)
-
+      setName(seasons[number-1].name)
+      setBackgroundColor(seasons[number-1].backgroundColor)
       number++;
 
   }
 
-  changeSeason();
+  useEffect(() => {
+    setInterval(changeSeason, 3000);
+  },[]);
 
   return (
-    <div className="App" style={{backgroundColor:season.backgroundColor}}>
-      <ChangeSeason text={season.name} />
+    <div className="App" style={{backgroundColor:backgroundColor}}>
+      <ChangeSeason text={name} />
     </div>
   );
 }
