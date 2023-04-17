@@ -1,7 +1,9 @@
 import logo from "../logo.svg";
 import "../App.css";
 
-const Footer = () => {
+
+
+const Footer = (props) => {
 
     const User = (user) => {
         return (
@@ -16,7 +18,7 @@ const Footer = () => {
 
     const Skills = (
         <div className="skills">
-            <h3>SKILLS</h3>
+            <h3 style={{color: props.data.textColor}}>SKILLS</h3>
             <ul>
                 <li>HTML</li>
                 <li>CSS</li>
@@ -57,17 +59,15 @@ const Footer = () => {
 
     currentDate = curWeekDay+", "+curDay+" "+curMonth+" "+curYear + " " + h + ":" + m;
 
-    const changeMode = () => {
-        let element = document.body;
-        element.classList.toggle("dark-mode");
-    }
+    console.log(props.data)
+
 
     return (
-        <footer className="footer">
+        <footer className="footer" style={{backgroundColor: props.data.backgroundColor}}>
             <div>
                 <img width="200px" src={logo} alt="React" />
                 <User firstName="Alkan" lastName="Çimen" country="Türkiye" />
-                <button className="dark-light-mode-button" onClick={changeMode}>Dark/Light</button>
+                <button className="dark-light-mode-button" onClick={props.data.changeMode}>{props.data.themeText}</button>
                 {Skills}
                 <h2 className="dateTime">{currentDate}</h2>
             </div>
