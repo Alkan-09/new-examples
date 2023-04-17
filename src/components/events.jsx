@@ -28,12 +28,7 @@ const Events = () => {
     }
 
     return (
-        <div className="Events-side">
-            <button onClick={handleClick}>Click for Alert</button>
-            <button onMouseMove={mouseMove}>Mouse here</button>
-            <input type="text" onKeyPress={handleKey} />
-            <input placeholder="Can you see here ?_?" type="text" onBlur={textBlur} />
-            <button onMouseEnter={mouseEnter}>Click me :D</button>
+        <div className="Events-side" >
         </div>
     )
 }

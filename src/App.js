@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useState, useEffect } from 'react'
-import ChangeSeason from "./components/changeSeason"
+import Events from "./components/events"
 let number = 1;
 
 function App() {
@@ -28,6 +28,9 @@ function App() {
   const [name, setName] = useState(seasons[0].name)
   const [backgroundColor, setBackgroundColor] = useState(seasons[0].backgroundColor)
 
+  const [x, setX] = useState(150)
+  const [y, setY] = useState(500)
+
   const changeSeason = () => {
 
       if(number === 5) {
@@ -44,9 +47,16 @@ function App() {
     setInterval(changeSeason, 3000);
   },[]);
 
+  const mouseMove = (e) => {
+    setX(Math.floor(Math.random() * 1200))
+    setY(Math.floor(Math.random() * 900))
+  }
+
   return (
-    <div className="App" style={{backgroundColor:backgroundColor}}>
-      <ChangeSeason text={name} />
+    <div className="App" style={{position:"relative" ,backgroundColor:backgroundColor}}>
+      <div style={{ position: "absolute", width: '300px', height: '60px', backgroundColor: 'blue', left: x, top: y}} onMouseMove={mouseMove}>
+        <h1>30 Days Of React</h1>
+      </div>
     </div>
   );
 }
